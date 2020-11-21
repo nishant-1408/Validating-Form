@@ -1,0 +1,22 @@
+const inputs = document.querySelectorAll("input");
+
+const regexPattern = {
+  phone: /^\d{10}$/,
+  username: /^[\w]{5,15}$/i,
+  password: /^[\w@-]{8,20}$/,
+  email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/,
+};
+
+const validate = (field, regex) => {
+  if (regex.test(field.value)) {
+    field.className = "valid";
+  } else {
+    field.className = "invalid";
+  }
+};
+
+inputs.forEach((input) => {
+  input.addEventListener("keyup", (e) => {
+    validate(e.target, regexPattern[e.target.attributes.name.value]);
+  });
+});// JavaScript source code
